@@ -1,29 +1,25 @@
-name: Deploy to Google Cloud Server
+name: Deploy to GCP
 
 on:
   push:
     branches:
-      - master
+      - master  
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy to server
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            cd ${{ secrets.DEPLOY_PATH }}
+          host: ${{ secrets.GCP_HOST }}
+          username: ${{ secrets.GCP_USER }}
+          key: ${{ secrets.GCP_SSH_KEY }}
+          script: |
+            cd ${{ secrets.GCP_DEPLOY_PATH }}
+            git reset --hard HEAD
             git pull origin main
             npm install
             npm run build
-            pm2 restart portfolio
-          EOF
+            pm2 restart svelte-app || pm2 start build --name svelte-app
