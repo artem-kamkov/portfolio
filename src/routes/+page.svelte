@@ -210,6 +210,7 @@
 								<li>PHP</li>
 								<li>MySQL</li>
 								<li>Git & Docker</li>
+								<li>React</li>
 							</ul>
 						</div>
 					</div>
