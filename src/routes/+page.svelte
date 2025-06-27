@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	let items: Item[] = [];
+	let items = [];
 	const gitUrl = import.meta.env.VITE_GIT_URL;
 	const LinkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
 
