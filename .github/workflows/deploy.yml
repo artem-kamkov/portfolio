@@ -19,6 +19,7 @@ jobs:
           script: |
             cd ${{ secrets.GCP_DEPLOY_PATH }}
             git reset --hard HEAD
+            git config --global --add safe.directory ${{ secrets.GCP_DEPLOY_PATH }}
             git pull origin main
             npm install
             npm run build
