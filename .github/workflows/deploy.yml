@@ -18,9 +18,11 @@ jobs:
           key: ${{ secrets.GCP_SSH_KEY }}
           script: |
             cd ${{ secrets.GCP_DEPLOY_PATH }}
+            sudo chown -R ${{ secrets.GCP_USER }}:${{ secrets.GCP_USER }} .
             git reset --hard HEAD
-            git config --global --add safe.directory ${{ secrets.GCP_DEPLOY_PATH }}
+            # git config --global --add safe.directory ${{ secrets.GCP_DEPLOY_PATH }}
             git pull origin main
             npm install
             npm run build
             pm2 restart svelte-app || pm2 start build --name svelte-app
+            sudo chown -R ${{ secrets.GCP_ROOT_USER }}:${{ secrets.GCP_ROOT_USER }} .
