@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { portfolioItem } from '../types/portfolioItem';
 
-	let items = [];
+	let items: portfolioItem[] = [];
+
 	const gitUrl = import.meta.env.VITE_GIT_URL;
 	const LinkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
 
@@ -21,18 +23,14 @@
 		};
 	}
 
-	async function fetchItems() {
+	async function fetchItems(): Promise<void> {
 		const res = await fetch('/api/items');
 		items = await res.json();
 	}
 
-	
-
 	onMount(() => {
 		fetchItems();
-		
 	});
-	
 </script>
 
 <div class="font-sans text-xl text-gray-600 leading-normal antialiased border-t-6 border-primary">
@@ -49,12 +47,7 @@
 					<div class="sm:flex-2 sm:text-right">
 						<ul class="text-2xl">
 							<li class="inline-block mr-6">
-								<a
-									href="{gitUrl}"
-									target="_blank"
-									rel="noopener"
-									aria-label="Github"
-								>
+								<a href={gitUrl} target="_blank" rel="noopener" aria-label="Github">
 									<svg
 										class="enlarge w-6 h-6"
 										fill="currentColor"
@@ -67,12 +60,7 @@
 								</a>
 							</li>
 							<li class="inline-block">
-								<a
-									href="{LinkedinUrl}"
-									target="_blank"
-									rel="noopener"
-									aria-label="LinkedIn"
-								>
+								<a href={LinkedinUrl} target="_blank" rel="noopener" aria-label="LinkedIn">
 									<svg
 										class="enlarge w-6 h-6"
 										fill="currentColor"
@@ -153,8 +141,6 @@
 							</a>
 						</div>
 					{/each}
-
-				
 				</div>
 			</div>
 		</div>
@@ -230,12 +216,7 @@
 			<div class="sm:flex-1 sm:text-right sm:order-2 mb-1 sm:mb-0">
 				<ul class="text-2xl">
 					<li class="inline-block mr-6">
-						<a
-							href="{gitUrl}"
-							target="_blank"
-							rel="noopener"
-							aria-label="Github"
-						>
+						<a href={gitUrl} target="_blank" rel="noopener" aria-label="Github">
 							<svg
 								class="enlarge w-6 h-6"
 								fill="currentColor"
@@ -248,12 +229,7 @@
 						</a>
 					</li>
 					<li class="inline-block">
-						<a
-							href="{LinkedinUrl}"
-							target="_blank"
-							rel="noopener"
-							aria-label="LinkedIn"
-						>
+						<a href={LinkedinUrl} target="_blank" rel="noopener" aria-label="LinkedIn">
 							<svg
 								class="enlarge w-6 h-6"
 								fill="currentColor"
