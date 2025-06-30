@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { portfolioItem } from '../types/portfolioItem';
+	import type { portfolioItem } from '../lib/types/portfolioItem';
+	import Year from '../lib/components/Year.svelte';
+
 
 	let items: portfolioItem[] = [];
 
@@ -243,7 +245,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="sm:flex-2 sm:text-left sm:order-1">&#169; 2024 Artem Kamkov</div>
+			<Year />
 		</div>
 	</div>
 </div>
