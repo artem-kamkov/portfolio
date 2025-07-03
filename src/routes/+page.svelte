@@ -32,29 +32,23 @@
 		items = await res.json();
 	}
 
-	let contentLoaded = false;
+	let pageLoaded = false;
 
-	async function preloadBackground(url: string): Promise<void> {
+	function waitForPageLoad(): Promise<void> {
 		return new Promise((resolve) => {
-			const img = new Image();
-			img.src = url;
-
-			if (img.complete) {
-				contentLoaded = true;
+			if (document.readyState === 'complete') {
 				resolve();
 			} else {
-				img.onload = () => {
-					contentLoaded = true;
-					resolve();
-				};
+				window.addEventListener('load', () => resolve(), { once: true });
 			}
 		});
 	}
+
 	onMount(async () => {
 		await fetchItems();
 		await tick();
-		await preloadBackground('/main-bg.jpg');
-
+		await waitForPageLoad();
+		pageLoaded = true;
 		inView('body .scroll-el', (element) => {
 			animate(
 				element,
@@ -70,20 +64,18 @@
 	});
 </script>
 
-{#if !contentLoaded}
+{#if !pageLoaded}
 	<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black">
 		<Loader />
 	</div>
 {/if}
-{#if contentLoaded}
+{#if pageLoaded}
 	<div
 		class="content font-sans text-xl text-gray-600 leading-normal antialiased border-t-6 border-primary"
 	>
 		<div id="header" class="bg-black relative text-lg">
 			<div
 				class="w-full m-auto bg-cover bg-no-repeat pb-8"
-				class:block={contentLoaded}
-				class:animate-fadeIn={contentLoaded}
 				style="background-image: url('/main-bg.jpg'); background-position: 0 25%;"
 			>
 				<div class="scroll-section container mx-auto text-white py-6 pb-32">
@@ -301,17 +293,3 @@
 	</div>
 {/if}
 
-<style>
-	@keyframes fadeIn {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-
-	.animate-fadeIn {
-		animation: fadeIn 0.5s ease-out forwards;
-	}
-</style>
