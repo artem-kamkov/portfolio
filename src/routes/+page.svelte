@@ -5,6 +5,7 @@
 	import Loader from '$lib/components/Loader.svelte';
 	import NightToggle from '$lib/components/NightToggle.svelte';
 	import { animate, inView } from 'motion';
+	import { animateIn, animateOut, animateStartIn } from '$lib/utils/animations';
 
 	let items: portfolioItem[] = [];
 
@@ -40,20 +41,19 @@
 		img.src = '/main-bg.jpg';
 		img.onload = () => {
 			pageLoaded = true;
+
+			tick().then(() => {
+				const sections = document.querySelectorAll('.start-el');
+				sections.forEach((el) => {
+					animateStartIn(el);
+				});
+
+				inView('body .scroll-el', (element) => {
+					animateIn(element);
+					return () => animateOut(element);
+				});
+			});
 		};
-
-		inView('body .scroll-el', (element) => {
-			animate(
-				element,
-				{ opacity: 1, x: [-100, 0] },
-				{
-					duration: 0.9,
-					easing: [0.17, 0.55, 0.55, 1]
-				}
-			);
-
-			return () => animate(element, { opacity: 0, x: -100 });
-		});
 	});
 </script>
 
@@ -73,7 +73,7 @@
 			> -->
 			<div class="w-full m-auto pb-8">
 				<img class="absolute inset-0 w-full h-full object-cover" src="/main-bg.jpg" alt="" />
-				<div class="scroll-section container mx-auto text-white py-6 pb-32">
+				<div class="relative container mx-auto text-white py-6 pb-32">
 					<div class="sm:flex text-center px-6 sm:px-12">
 						<div class="sm:flex-1 text-2xl font-bold sm:text-left mb-4">
 							<a href="/" class="hover:underline">Artem Kamkov</a>
@@ -112,11 +112,11 @@
 					</div>
 
 					<div class="content mx-auto text-shadow-xl font-semibold text-center pt-20">
-						<h1 class="scroll-el text-5xl font-bold mb-6 drop-shadow-lg">
+						<h1 class="start-el scroll-el text-5xl font-bold mb-6 drop-shadow-lg">
 							Hi, I'm Artem, a Full-Stack Developer <br />with 7 Years of Experience
 						</h1>
 						<p
-							class="scroll-el text-2xl sm:text-3xl sm:leading-snug leading-snug mb-8 drop-shadow-lg"
+							class="start-el scroll-el text-2xl sm:text-3xl sm:leading-snug leading-snug mb-8 drop-shadow-lg"
 						>
 							Building scalable, high-performance web applications <br />with modern technologies
 						</p>
