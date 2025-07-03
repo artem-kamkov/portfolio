@@ -31,24 +31,17 @@
 		const res = await fetch('/api/items');
 		items = await res.json();
 	}
-
 	let pageLoaded = false;
-
-	function waitForPageLoad(): Promise<void> {
-		return new Promise((resolve) => {
-			if (document.readyState === 'complete') {
-				resolve();
-			} else {
-				window.addEventListener('load', () => resolve(), { once: true });
-			}
-		});
-	}
-
 	onMount(async () => {
 		await fetchItems();
 		await tick();
-		await waitForPageLoad();
-		pageLoaded = true;
+
+		const img = new Image();
+		img.src = '/main-bg.jpg';
+		img.onload = () => {
+			pageLoaded = true;
+		};
+
 		inView('body .scroll-el', (element) => {
 			animate(
 				element,
@@ -74,10 +67,12 @@
 		class="content font-sans text-xl text-gray-600 leading-normal antialiased border-t-6 border-primary"
 	>
 		<div id="header" class="bg-black relative text-lg">
-			<div
+			<!-- <div
 				class="w-full m-auto bg-cover bg-no-repeat pb-8"
 				style="background-image: url('/main-bg.jpg'); background-position: 0 25%;"
-			>
+			> -->
+			<div class="w-full m-auto pb-8">
+				<img class="absolute inset-0 w-full h-full object-cover" src="/main-bg.jpg" alt="" />
 				<div class="scroll-section container mx-auto text-white py-6 pb-32">
 					<div class="sm:flex text-center px-6 sm:px-12">
 						<div class="sm:flex-1 text-2xl font-bold sm:text-left mb-4">
@@ -292,4 +287,3 @@
 		</div>
 	</div>
 {/if}
-
