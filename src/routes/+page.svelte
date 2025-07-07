@@ -6,10 +6,12 @@
 	import NightToggle from '$lib/components/NightToggle.svelte';
 	import PortfolioItem from '$lib/components/PortfolioItem.svelte';
 	import SmItem from '$lib/components/sm/SMItem.svelte';
+	import fetchItems from '$lib/api/fetchPortfolio';
 	import { inView } from 'motion';
 	import { animateIn, animateOut, animateStartIn } from '$lib/utils/animations';
 
 	let items: portfolioItem[] = [];
+
 
 	const gitUrl = import.meta.env.VITE_GIT_URL;
 	const LinkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
@@ -30,25 +32,9 @@
 		};
 	}
 
-	async function fetchItems(): Promise<void> {
-		const res1 = await fetch('/api/items');
-		const res2 = await fetch(import.meta.env.VITE_GITHUB_API_URL);
-
-		const DBData = await res1.json();
-		const githubData = await res2.json();
-		const transformedGithubData = githubData.map((repo) => ({
-			id: repo.id,
-			title: repo.name,
-			description: repo.description || 'No description provided.',
-			img_url: null,
-			url: repo.html_url
-		}));
-
-		items = [...DBData, ...transformedGithubData];
-	}
 	let pageLoaded = false;
 	onMount(async () => {
-		await fetchItems();
+		items = await fetchItems();
 		await tick();
 
 		const img = new Image();
