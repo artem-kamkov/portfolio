@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-primary: rgb(17, 24, 39);
+  --color-secondary: rgb(107, 114, 128);
+  --color-contrast: rgb(255, 255, 255);
+  --color-bg-primary: white;
+  --color-bg-secondary: rgb(247, 250, 252);
+}
+
+
+.dark {
+    --color-primary: white;
+    --color-secondary: white;
+    --color-contrast: rgb(255, 255, 255);
+    --color-bg-primary: rgb(55, 65, 81);
+    --color-bg-secondary: rgb(17, 24, 39);
+}
