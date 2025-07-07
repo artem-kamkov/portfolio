@@ -12,7 +12,6 @@
 
 	let items: portfolioItem[] = [];
 
-
 	const gitUrl = import.meta.env.VITE_GIT_URL;
 	const LinkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
 
@@ -79,7 +78,7 @@
 							<a href="/" class="hover:opacity-70 transition">Artem Kamkov</a>
 						</div>
 						<div class="start-anim scroll-anim sm:flex-2 sm:text-right">
-							<ul class="text-2xl">
+							<ul class="text-2xl select-none">
 								<li class="inline-block mr-6"><NightToggle /></li>
 								<li class="inline-block mr-6">
 									<SmItem sm="github" link={gitUrl} ariaLabel="Github" />
@@ -163,31 +162,47 @@
 								class="mb-6 text-base text-[var(--color-secondary)] sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 lg:mx-0"
 							>
 								<p class="mb-4">
-									I’m a full-stack developer with 7 years of experience in building high-performance
-									websites and applications using modern technologies like Vue.js, Laravel, and
-									WordPress.
+									I'm a full-stack developer specializing in high-performance websites and
+									applications, working with technologies like Node.js, React, Vue, Svelte, PHP, and
+									Laravel.
 								</p>
 								<p class="mb-4">
-									I’ve contributed to projects for leading Ukrainian and UK companies, focusing on
-									creating scalable, maintainable solutions. My expertise includes front-end
-									development with Vue.js and back-end solutions with Laravel.
+									I’ve contributed to projects for leading companies in Ukraine and the UK, focusing
+									on creating scalable, maintainable solutions. My work spans both front-end and
+									back-end development, with a strong emphasis on clean architecture and long-term
+									sustainability.
 								</p>
 								<p class="mb-6">
 									I’m passionate about solving complex problems and ensuring seamless user
 									experiences through fast, reliable, and intuitive web applications.
 								</p>
 
-								<h3 class="text-2xl font-semibold text-[var(--color-primary)] mb-4">Skills</h3>
-								<ul class="grid grid-cols-2 gap-4">
-									<li>Vue.js</li>
-									<li>Laravel</li>
-									<li>WordPress</li>
-									<li>HTML & CSS</li>
-									<li>JavaScript</li>
-									<li>PHP</li>
-									<li>MySQL</li>
-									<li>Git & Docker</li>
-									<li>React</li>
+								<h2 class="text-2xl font-semibold text-[var(--color-primary)] mb-4">Key Skills</h2>
+								<ul class="space-y-4 text-[var(--color-secondary)]">
+									<li>
+										<span class="font-semibold">Frontend:</span>
+										HTML5, CSS3, CSS preprocessors
+									</li>
+									<li>
+										<span class="font-semibold">JavaScript:</span>
+										TypeScript, Node.js, Express.js, React, Next.js, Vue.js, Svelte
+									</li>
+									<li>
+										<span class="font-semibold">PHP:</span>
+										Laravel, WordPress
+									</li>
+									<li>
+										<span class="font-semibold">Database:</span>
+										MySQL, PostgreSQL, MongoDB, DynamoDB
+									</li>
+									<li>
+										<span class="font-semibold">Tools & Technologies:</span>
+										Git, Docker, RESTful APIs, GraphQL
+									</li>
+									<li>
+										<span class="font-semibold">Other:</span>
+										Agile Methodologies, TDD, CI/CD, Responsive Design, UX/UI Principles
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -206,7 +221,7 @@
 			<div class="container mx-auto px-4">
 				<div class="start-anim scroll-anim py-4 sm:flex text-center">
 					<div class="sm:flex-1 sm:text-right sm:order-2 mb-1 sm:mb-0">
-						<ul class="text-2xl">
+						<ul class="text-2xl select-none">
 							<li class="inline-block mr-6">
 								<a
 									href={gitUrl}
