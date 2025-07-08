@@ -4,7 +4,7 @@
 
 </script>
 
-<div class="scroll-anim project w-full md:w-[calc(50%-0.5rem)] px-4 lg:px-8 mb-8 md:mb-0">
+<div class="scroll-anim project w-full md:w-[calc(50%-1rem)] lg:w-[calc((100%-4.5rem)/3)]">
 	<a href={item.url} target="_blank" rel="noopener">
 		<div
 			class="bg-[var(--color-bg-primary)] enlarge text-center text-base rounded-lg border-t-6 border-primary shadow-lg h-full px-8 md:px-12 py-8"

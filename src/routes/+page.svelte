@@ -94,12 +94,12 @@
 						class="start-anim scroll-anim content mx-auto text-shadow-xl font-semibold text-center pt-20"
 					>
 						<h1 class="text-5xl font-bold mb-6 drop-shadow-lg text-[var(--color-contrast)]">
-							Hi, I'm Artem, a Full-Stack Developer <br />with 7 Years of Experience
+							Hi, I'm Artem — a full-stack developer<br>crafting fast, scalable web apps.
 						</h1>
 						<p
 							class="text-2xl sm:text-3xl sm:leading-snug leading-snug mb-8 drop-shadow-lg text-[var(--color-contrast)]"
 						>
-							Building scalable, high-performance web applications <br />with modern technologies
+							I specialize in modern technologies that power reliable, <br>user-friendly digital experiences.
 						</p>
 						<a
 							class="bg-[rgba(46,46,37,.9)] hover:bg-[rgba(46,46,37,.7)] text-[var(--color-contrast)] font-semibold py-2 px-6 rounded-full shadow-lg transition duration-300 ease-in-out"
@@ -122,13 +122,13 @@
 
 		<div id="content" class="bg-[var(--color-bg-secondary)]">
 			<div id="projects">
-				<div class="max-w-6xl mx-auto px-6 py-10 sm:py-20">
+				<div class="container mx-auto px-4 py-12 sm:py-20">
 					<h2
-						class="scroll-anim mt-6 text-3xl tracking-tight font-bold text-[var(--color-primary)] sm:text-4xl md:text-5xl text-center"
+						class="scroll-anim text-3xl tracking-tight font-bold text-[var(--color-primary)] sm:text-4xl md:text-5xl text-center"
 					>
 						Projects
 					</h2>
-					<div class="flex flex-wrap gap-4 mt-12 mb-12 md:mb-16">
+					<div class="flex flex-wrap gap-8 lg:gap-9 mt-12">
 						{#each items as item}
 							<PortfolioItem {item} />
 						{/each}
